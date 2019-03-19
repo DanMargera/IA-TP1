@@ -35,7 +35,6 @@ if __name__ == "__main__":
     classified_data = dict()
     for k,v in data.items():
         classified_data.update({k : classify(v)})
-        break
 
     with open('classified_'+filename, 'w') as file:
         file.write(json.dumps(classified_data, indent=4))
