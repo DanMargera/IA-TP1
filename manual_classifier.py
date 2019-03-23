@@ -2,26 +2,23 @@ import json
 import msvcrt
 import sys
 
-def classify(tweet_text):
+def save_and_exit(filename, data):
+    with open(filename, 'w') as file:
+        file.write(json.dumps(data, indent=4))
+
+def classify(data, key, tweet_text, filename):
     print('--------------------------------')
     print(tweet_text)
-    print('Positive(P) Negative(N) Neutral(Any Key)')
+    print('Positive(P) Negative(N) Neutral(Any Key) Quit(Q)')
     input = msvcrt.getch()
     if (input == b'p' or input == b'P'):
-        return {
-            "text" : tweet_text,
-            "sentiment" : 1
-        }
+        data[key]["sentiment"] = 1
     elif (input == b'n' or input == b'N'):
-        return {
-            "text" : tweet_text,
-            "sentiment" : -1
-        }
+        data[key]["sentiment"] = -1
+    elif (input == b'q' or input == b'Q'):
+        save_and_exit(filename, data)
     else:
-        return {
-            "text" : tweet_text,
-            "sentiment" : 0
-        }
+        data[key]["sentiment"] = 0
 
 if __name__ == "__main__":
     try:
@@ -32,9 +29,8 @@ if __name__ == "__main__":
         exit()
 
     data = json.loads(open(filename).read())
-    classified_data = dict()
     for k,v in data.items():
-        classified_data.update({k : classify(v)})
+        if (v["sentiment"] == 99):
+            classify(data, k, v, filename)
 
-    with open('classified_'+filename, 'w') as file:
-        file.write(json.dumps(classified_data, indent=4))
+    save_and_exit(filename, data)
