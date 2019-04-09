@@ -31,6 +31,6 @@ if __name__ == "__main__":
     data = json.loads(open(filename).read())
     for k,v in data.items():
         if (v["sentiment"] == 99):
-            classify(data, k, v, filename)
+            classify(data, k, v['text'], filename)
 
     save_and_exit(filename, data)
