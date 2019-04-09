@@ -5,6 +5,7 @@ import sys
 def save_and_exit(filename, data):
     with open(filename, 'w') as file:
         file.write(json.dumps(data, indent=4))
+    exit()
 
 def classify(data, key, tweet_text, filename):
     print('--------------------------------')
