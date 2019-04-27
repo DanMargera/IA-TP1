@@ -1,5 +1,9 @@
 import re
 
+def removeRT(text):
+    if (text.startswith("RT ")):
+        return text[3:]
+    return text
 
 def replaceURL(text):
     """ Replaces url address with "url" """
@@ -48,4 +52,4 @@ def replaceContraction(text):
     return text
 
 def process(text):
-    return replaceURL(replaceContraction(replaceAtUser(removeHashtag(replaceMultiExclamationMark(text)))))
+    return replaceURL(replaceContraction(replaceAtUser(removeHashtag(replaceMultiExclamationMark(removeRT(text)))))).strip()
