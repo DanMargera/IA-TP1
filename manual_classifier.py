@@ -8,7 +8,7 @@ def save_and_exit(filename, data):
     exit()
 
 def classify(data, key, tweet_text, filename):
-    print('--------------------------------')
+    print('\n\n\n--------------------------------')
     print(tweet_text)
     print('Positive(P) Negative(N) Neutral(Any Key) Quit(Q)')
     input = msvcrt.getch()
