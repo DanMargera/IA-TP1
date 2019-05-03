@@ -52,4 +52,4 @@ def replaceContraction(text):
     return text
 
 def process(text):
-    return replaceURL(replaceContraction(replaceAtUser(removeHashtag(replaceMultiExclamationMark(removeRT(text)))))).strip()
+    return replaceURL(replaceContraction(replaceAtUser(removeHashtag(replaceMultiExclamationMark(removeRT(text)))))).strip().lower()
