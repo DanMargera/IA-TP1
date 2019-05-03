@@ -28,9 +28,16 @@ def prepare_dataframe():
     debug("-- Neutral:", len(df[df.sentiment == 0].index))
     debug("-- Negative:", len(df[df.sentiment == -1].index))
     df.loc[:,'sentiment'] = df.sentiment.apply(lambda s : (s+1))
-    return df
+    positive_df = df[df.sentiment == 2]
+    neutral_df = df[df.sentiment == 1]
+    negative_df = df[df.sentiment == 0]
+    train_df = pd.concat([positive_df[0:108], neutral_df[0:108], negative_df[0:108]]).sample(frac=1).reset_index(drop=True) # shuffle
+    debug(train_df)
+    test_df = pd.concat([positive_df[108:128], neutral_df[108:128], negative_df[108:128]]).sample(frac=1).reset_index(drop=True) # shuffle
+    debug(test_df)
+    return train_df, test_df
 
 if __name__ == '__main__':
-    df = prepare_dataframe()
-    classifier = model.MTLClassifier(df, df, 3, 'sentiment', 'text')
+    train_df, test_df = prepare_dataframe()
+    classifier = model.MTLClassifier(train_df, test_df, 3, 'sentiment', 'text')
     classifier.run()
