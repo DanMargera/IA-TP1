@@ -2,6 +2,7 @@ import tensorflow as tf
 import tensorflow_hub as tfhub
 import encoder_large as use
 import numpy as np
+import metrics
 
 HVEC = [512, 256]
 LRATE = 0.001
@@ -37,9 +38,13 @@ class MTLClassifier:
         print("Training set accuracy: {accuracy}".format(**train_eval_result))
         print("Test set accuracy: {accuracy}".format(**test_eval_result))
         print("-----------------------------------")
+        metrics.plot_confusion_matrix(self.test_df,
+            self.target_column_label,
+            estimator,
+            self.predict_test_input_fn,
+            ["Negative","Neutral","Positive"])
 
     def __init__(self, train_df, test_df, n_classes, target_column_label, text_column_label):
-        #self.encoder_module = "https://tfhub.dev/google/nnlm-en-dim128-with-normalization/1"
         self.encoder_module = use.URL
         self.train_df = train_df
         self.test_df = test_df
