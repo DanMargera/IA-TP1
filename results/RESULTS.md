@@ -36,4 +36,4 @@ Confusion matrix (normalized):\
 ![cm](Test%20set%20confusion%20matrix.png)
 
 ## References
-[1] Universal Sentence Encoder https://arxiv.org/pdf/1803.11175.pdf
+[1] [Universal Sentence Encoder](https://arxiv.org/abs/1803.11175)
