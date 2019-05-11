@@ -14,7 +14,7 @@ Total of 1028 tweets classified manually:
 Then we divide this into balanced datasets to train/test:
 
 Train set has 324 tweets, 108 of each class(selected randomly).\
-Test set has 59 tweets(selected randomly from the remaining pool of tweets):
+Test set has 59 tweets(selected randomly from the remaining pool of tweets, 15.4% holdout):
  - Positive: 20
  - Neutral: 20
  - Negative: 19
@@ -34,3 +34,6 @@ Confusion matrix:\
 
 Confusion matrix (normalized):\
 ![cm](Test%20set%20confusion%20matrix.png)
+
+## References
+[1] Universal Sentence Encoder https://arxiv.org/pdf/1803.11175.pdf
