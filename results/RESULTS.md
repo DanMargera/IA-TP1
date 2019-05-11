@@ -11,12 +11,15 @@ Total of 1028 tweets classified manually:
  - Neutral: 584
  - Negative: 127
 
-We balanced the dataset by selecting randomly 127 tweets of each class.
+Then we divide this into balanced datasets to train/test:
 
-Then we divide this balanced dataset into a train and a test sets:
-
-Train set has 324 tweets, 108 of each class.\
-Test set has 57 tweets, 19 of each class(17.59% holdout).
+Train set has 324 tweets, 108 of each class(selected randomly).\
+Test set has 59 tweets(selected randomly from the remaining pool of tweets):
+ - Positive: 20
+ - Neutral: 20
+ - Negative: 19
+ 
+ (The slight unbalance on test set does not make a difference.)
 
 ## Results
 ### Train Set
